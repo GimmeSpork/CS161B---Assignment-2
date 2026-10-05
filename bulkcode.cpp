@@ -27,12 +27,41 @@ void displayMenu(){
 void readOption(char &option){
     cout << "What would you like to do?: ";
     cin >> option;
-    while(option != 'e' || option != 'E' || option !='q' || option != 'Q'){
+    while(option != 'e' && option != 'E' && option !='q' && option != 'Q'){
         cout << "Invalid option! Please try again!" << endl;
+        cout << "\nWhat would you like to do?: ";
+        cin >> option;
     }
 }
 
 void encode(char encodeFileName[]){
+    char fName[20];
+    char lName[20];
+    bool lateFlag;
+    char parsedID[6];
+    char fileName[20];
+    char strTime[6];
+
+
+
+    readInput(fName, lName, lateFlag);
+    readInput(parsedID, fileName);
+    readTime(strTime);
+
+    strncpy(encodeFileName, lName, 50);
+    strcat(encodeFileName, "_");
+    strcat(encodeFileName, fName);
+    strcat(encodeFileName, "_");
+    if(lateFlag == true){
+        strcat(encodeFileName, "LATE");
+        strcat(encodeFileName, "_");
+    }
+
+    strcat(encodeFileName, parsedID);
+    strcat(encodeFileName, "_");
+    strcat(encodeFileName, strTime);
+    strcat(encodeFileName, "_");
+    strcat(encodeFileName, fileName);
 
 }
 
@@ -40,6 +69,8 @@ void readInput(char fName[], char lName[], bool &lateFlag){
     char binaryChoice;
     int i;
 
+    cout << "\nThis program will ask you a few questions and generate" 
+    "an encoded fileName based on your answers." << endl;
     cout << "\nEnter your last name: ";
     cin >> lName;
     for(i = 0; lName[i]; ++i){
@@ -49,7 +80,7 @@ void readInput(char fName[], char lName[], bool &lateFlag){
 
     cout << "Enter your first name: ";
     cin >> fName;
-    for(i = 0; fName; ++i){
+    for(i = 0; fName[i]; ++i){
         fName[i] = tolower(fName[i]);
     }
     cout << endl;
@@ -66,7 +97,7 @@ void readInput(char fName[], char lName[], bool &lateFlag){
 void readInput(char parsedID[], char fileName[]){
     char stdID[50];
 
-    cout << "Enter your Student-ID (format: 222-22-2222): ";
+    cout << "\nEnter your Student-ID (format: 222-22-2222): ";
     cin >> stdID;
     strncpy(parsedID, stdID +7, 4);
 
@@ -75,19 +106,17 @@ void readInput(char parsedID[], char fileName[]){
 }
 
 void readTime(char strTime[]){
-    int min;
-    int hour;
+    int min = 0;
+    int hour = 0;
     char discard = ':';
 
-    cout << "Enter the time submitted (military time - ex: 18:24 for 6:24pm): ";
+    cout << "\nEnter the time submitted (military time - ex: 18:24 for 6:24pm): ";
     cin >> hour >> discard >> min;
     cin.ignore(100, '\n');
 
     if(hour >= 0 && hour <= 24){
-        strTime[0] = '0';
+        strncat(strTime, to_string(hour).c_str(), 10);
     } 
-    strncat(strTime, to_string(hour).c_str(), 24);
-
     else {
         cout << "Invalid input! Please try again!" << endl;
         cin.clear();
@@ -96,15 +125,13 @@ void readTime(char strTime[]){
     }
 
     if(min >= 0 && min <= 60){
-        strcat(strTime, "0");
+        strcat(strTime, to_string(min).c_str());
     }
-    strcat(strTime, to_string(min).c_str());
     else{
         cout << "Invalid input! Please try again!" << endl;
         cin.clear();
         cin.ignore(100, '\n');
         cin >> hour >> discard >> min;
     }
-    cin.getline(hour, 50, ':');
-    cin.getline(min, 50);
 }
+

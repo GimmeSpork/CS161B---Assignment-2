@@ -14,6 +14,23 @@
 #include "bulkcode.cpp"
 using namespace std;
 
-// display function prototypes
+//start of main function
+int main(){
+  char encodeFileName[50];
+  char userOption;
+
+  welcome();
+
+  do{
+    displayMenu();
+    readOption(userOption);
+    encode(encodeFileName);
+
+    cout << "Your encoded file name is: " << encodeFileName << endl;
+
+  }while(userOption == 'e' || userOption == 'E');
+
+  cout << "\nThank you for using my fileName generator!" << endl;
+}
 
 
