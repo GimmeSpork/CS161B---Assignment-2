@@ -11,7 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-#include "bulkcode.cpp"
+#include "bulkcode.h"
 using namespace std;
 
 //start of main function
