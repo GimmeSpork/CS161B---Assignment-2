@@ -16,7 +16,7 @@ using namespace std;
 
 //start of main function
 int main(){
-  char encodeFileName[50];
+  char encodeFileName[101];
   char userOption;
 
   welcome();
@@ -26,7 +26,7 @@ int main(){
     readOption(userOption);
     encode(encodeFileName);
 
-    cout << "Your encoded file name is: " << encodeFileName << endl;
+    cout << "\nYour encoded file name is: " << encodeFileName << endl;
 
   }while(userOption == 'e' || userOption == 'E');
 

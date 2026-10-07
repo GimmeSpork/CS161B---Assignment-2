@@ -7,7 +7,7 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "main.cpp", "bulkcode.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

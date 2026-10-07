@@ -34,13 +34,8 @@ void readOption(char &option){
     }
 }
 
-void encode(char encodeFileName[]){
-    char fName[20];
-    char lName[20];
+void encode(char encodeFileName[], char fName[], char lName[], char parsedID[], char fileName[], char strTime[]){
     bool lateFlag;
-    char parsedID[6];
-    char fileName[20];
-    char strTime[6];
 
 
 
@@ -48,10 +43,11 @@ void encode(char encodeFileName[]){
     readInput(parsedID, fileName);
     readTime(strTime);
 
-    strncpy(encodeFileName, lName, 50);
+    strncpy(encodeFileName, lName, 15);
     strcat(encodeFileName, "_");
     strcat(encodeFileName, fName);
     strcat(encodeFileName, "_");
+
     if(lateFlag == true){
         strcat(encodeFileName, "LATE");
         strcat(encodeFileName, "_");
