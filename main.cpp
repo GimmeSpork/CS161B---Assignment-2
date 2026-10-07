@@ -11,12 +11,12 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
-#include "bulkcode.h"
+#include "bulkcode.cpp"
 using namespace std;
 
 //start of main function
 int main(){
-  char encodeFileName[101];
+  char encodeFileName[50];
   char userOption;
 
   welcome();
